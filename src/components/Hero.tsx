@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-const ROLES = ["Frontend Developer", "UI Engineer", "React Developer", "Web Creator"];
+const ROLES = ["Frontend Developer", "React Developer"];
 
 function TypewriterText() {
   const [idx, setIdx] = useState(0);
@@ -92,17 +92,17 @@ export default function Hero() {
 
           <motion.div variants={fadeUp}>
             <h1
-              className="font-[Syne,sans-serif] text-6xl md:text-7xl xl:text-8xl font-bold leading-[1.0] tracking-tight"
+              className="font-[Syne,sans-serif] text-6xl md:text-7xl xl:text-8xl font-bold leading-none tracking-tight"
               style={{ lineHeight: 1.05 }}
             >
-              <span className="text-white/90">Hi, I&apos;m</span>
+              {/* <span className="text-white/90">Hi, I&apos;m</span> */}
               <br />
               <span className="text-white">Yudhi</span>
               <span className="text-[#c8f04d]">.</span>
             </h1>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="text-2xl md:text-3xl font-light min-h-[2.5rem]">
+          <motion.div variants={fadeUp} className="text-2xl md:text-3xl font-light min-h-10">
             <TypewriterText />
           </motion.div>
 

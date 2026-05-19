@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import BubbleCursor from "@/components/BubleCursor";
 
 export const metadata: Metadata = {
   title: "Yudhi — Frontend Developer",
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <BubbleCursor />
+        {children}
+      </body>
     </html>
   );
 }

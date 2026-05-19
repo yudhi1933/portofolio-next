@@ -73,7 +73,7 @@ export default function Journey() {
             initial={{ scaleY: 0 }}
             animate={inView ? { scaleY: 1 } : {}}
             transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1], delay: 0.3 }}
-            className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#c8f04d]/50 via-white/10 to-transparent origin-top hidden md:block"
+            className="absolute left-8 top-0 bottom-0 w-px bg-linear-to-b from-[#c8f04d]/50 via-white/10 to-transparent origin-top hidden md:block"
           />
 
           <div className="space-y-12">
@@ -86,7 +86,7 @@ export default function Journey() {
                 className="relative flex gap-8 group"
               >
                 {/* Icon dot */}
-                <div className="hidden md:flex flex-shrink-0 w-16 justify-center">
+                <div className="hidden md:flex shrink-0 w-16 justify-center">
                   <motion.div
                     whileHover={{ scale: 1.2 }}
                     className="w-10 h-10 rounded-xl flex items-center justify-center text-lg z-10 mt-1"
@@ -105,7 +105,7 @@ export default function Journey() {
                       <div className="text-white/50 text-sm mt-0.5">{item.place}</div>
                     </div>
                     <span
-                      className="text-xs font-semibold px-3 py-1 rounded-full flex-shrink-0"
+                      className="text-xs font-semibold px-3 py-1 rounded-full shrink-0"
                       style={{ background: item.color + "15", color: item.color, border: `1px solid ${item.color}25` }}
                     >
                       {item.tag}

@@ -80,7 +80,7 @@ export default function Contact() {
                 transition={{ delay: 0.2 + i * 0.08 }}
                 className="flex items-center gap-4 p-4 rounded-xl border border-white/6 hover:border-white/15 hover:bg-white/3 transition-all group mb-3"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#111] border border-white/8 flex items-center justify-center text-lg flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-[#111] border border-white/8 flex items-center justify-center text-lg shrink-0">
                   {item.icon}
                 </div>
                 <div className="min-w-0">

@@ -40,8 +40,8 @@ export default function Skills() {
   return (
     <section id="skills" className="py-32 relative overflow-hidden bg-[#0d0d0d]">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/8 to-transparent" />
       </div>
 
       <div ref={ref} className="max-w-7xl mx-auto px-6 mb-16">
@@ -87,7 +87,7 @@ export default function Skills() {
               <ul className="space-y-2.5">
                 {grp.items.map((item) => (
                   <li key={item} className="flex items-center gap-2.5 text-sm text-white/65 group-hover:text-white/75 transition-colors">
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: grp.color }} />
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: grp.color }} />
                     {item}
                   </li>
                 ))}
@@ -103,7 +103,7 @@ export default function Skills() {
           {[...SKILLS, ...SKILLS].map((s, i) => (
             <span
               key={i}
-              className="flex-shrink-0 flex items-center gap-2.5 bg-[#111] border border-white/8 text-white/60 text-sm px-5 py-2.5 rounded-full hover:border-[#c8f04d]/40 hover:text-[#c8f04d] transition-colors cursor-default"
+              className="shrink-0 flex items-center gap-2.5 bg-[#111] border border-white/8 text-white/60 text-sm px-5 py-2.5 rounded-full hover:border-[#c8f04d]/40 hover:text-[#c8f04d] transition-colors cursor-default"
             >
               <span className="text-[#c8f04d] text-xs">◆</span>
               {s}
@@ -121,7 +121,7 @@ export default function Skills() {
           {[...SKILLS.slice(12), ...SKILLS.slice(0, 12), ...SKILLS.slice(12), ...SKILLS.slice(0, 12)].map((s, i) => (
             <span
               key={i}
-              className="flex-shrink-0 flex items-center gap-2.5 bg-[#0a0a0a] border border-white/6 text-white/40 text-sm px-5 py-2.5 rounded-full hover:border-[#c8f04d]/30 hover:text-white/70 transition-colors cursor-default"
+              className="shrink-0 flex items-center gap-2.5 bg-[#0a0a0a] border border-white/6 text-white/40 text-sm px-5 py-2.5 rounded-full hover:border-[#c8f04d]/30 hover:text-white/70 transition-colors cursor-default"
             >
               <span className="text-white/20 text-xs">◆</span>
               {s}
