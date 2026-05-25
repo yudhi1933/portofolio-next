@@ -46,14 +46,10 @@ export default function Journey() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="journey" className="py-32 relative">
-      <div className="max-w-7xl mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="inline-flex items-center gap-2 text-[#c8f04d] text-xs font-semibold tracking-[0.2em] uppercase mb-4"
-        >
-          <span className="w-8 h-px bg-[#c8f04d]" />
+    <section id="journey" className="py-20 md:py-32 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6" ref={ref}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} className="inline-flex items-center gap-2 text-[#c8f04d] text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-4">
+          <span className="w-6 sm:w-8 h-px bg-[#c8f04d]" />
           Perjalanan
         </motion.div>
 
@@ -61,9 +57,10 @@ export default function Journey() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1, duration: 0.7 }}
-          className="font-[Syne,sans-serif] text-5xl md:text-6xl font-bold mb-20"
+          className="font-[Syne,sans-serif] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 md:mb-20 leading-tight"
         >
-          Dari nol <br />hingga <em className="text-[#c8f04d] not-italic">sekarang.</em>
+          Dari nol <br />
+          hingga <em className="text-[#c8f04d] not-italic">sekarang.</em>
         </motion.h2>
 
         {/* Timeline */}
@@ -72,46 +69,65 @@ export default function Journey() {
           <motion.div
             initial={{ scaleY: 0 }}
             animate={inView ? { scaleY: 1 } : {}}
-            transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1], delay: 0.3 }}
-            className="absolute left-8 top-0 bottom-0 w-px bg-linear-to-b from-[#c8f04d]/50 via-white/10 to-transparent origin-top hidden md:block"
+            transition={{
+              duration: 1.5,
+              ease: [0.23, 1, 0.32, 1],
+              delay: 0.3,
+            }}
+            className="absolute left-5 sm:left-8 top-0 bottom-0 w-px bg-linear-to-b from-[#c8f04d]/50 via-white/10 to-transparent origin-top"
           />
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {timeline.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -40 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + i * 0.15, duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-                className="relative flex gap-8 group"
+                transition={{
+                  delay: 0.4 + i * 0.15,
+                  duration: 0.7,
+                  ease: [0.23, 1, 0.32, 1],
+                }}
+                className="relative flex gap-4 sm:gap-8 group"
               >
                 {/* Icon dot */}
-                <div className="hidden md:flex shrink-0 w-16 justify-center">
+                <div className="flex shrink-0 w-10 sm:w-16 justify-center">
                   <motion.div
                     whileHover={{ scale: 1.2 }}
-                    className="w-10 h-10 rounded-xl flex items-center justify-center text-lg z-10 mt-1"
-                    style={{ background: item.color + "15", border: `1px solid ${item.color}30` }}
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center text-base sm:text-lg z-10 mt-1"
+                    style={{
+                      background: item.color + "15",
+                      border: `1px solid ${item.color}30`,
+                    }}
                   >
                     {item.icon}
                   </motion.div>
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-[#111] border border-white/8 rounded-2xl p-8 hover:border-white/15 transition-all group-hover:bg-[#131313]">
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
+                <div className="flex-1 bg-[#111] border border-white/8 rounded-2xl p-5 sm:p-6 md:p-8 hover:border-white/15 transition-all group-hover:bg-[#131313]">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4">
                     <div>
-                      <div className="text-white/40 text-sm mb-1">{item.date}</div>
-                      <h3 className="font-[Syne,sans-serif] text-xl font-bold">{item.title}</h3>
-                      <div className="text-white/50 text-sm mt-0.5">{item.place}</div>
+                      <div className="text-white/40 text-xs sm:text-sm mb-1">{item.date}</div>
+
+                      <h3 className="font-[Syne,sans-serif] text-lg sm:text-xl font-bold leading-snug">{item.title}</h3>
+
+                      <div className="text-white/50 text-xs sm:text-sm mt-1">{item.place}</div>
                     </div>
+
                     <span
-                      className="text-xs font-semibold px-3 py-1 rounded-full shrink-0"
-                      style={{ background: item.color + "15", color: item.color, border: `1px solid ${item.color}25` }}
+                      className="w-fit text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full shrink-0"
+                      style={{
+                        background: item.color + "15",
+                        color: item.color,
+                        border: `1px solid ${item.color}25`,
+                      }}
                     >
                       {item.tag}
                     </span>
                   </div>
-                  <p className="text-white/55 leading-relaxed">{item.desc}</p>
+
+                  <p className="text-white/55 text-sm sm:text-base leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
