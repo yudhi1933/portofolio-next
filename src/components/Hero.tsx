@@ -68,7 +68,7 @@ export default function Hero() {
 
         <div className="orb-b absolute bottom-[10%] right-[5%] w-44 h-44 md:w-80 md:h-80 rounded-full bg-[#c8f04d]/5 blur-3xl" />
 
-        <div className="absolute top-[50%] left-[50%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/2 blur-3xl" />
+        <div className="absolute top-[50%] left-[50%] w-75 h-75 md:w-150 md:h-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/2 blur-3xl" />
 
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -83,9 +83,18 @@ export default function Hero() {
         {/* LEFT */}
         <motion.div variants={stagger} initial="hidden" animate="show" className="space-y-6 md:space-y-8">
           <motion.div variants={fadeUp}>
-            <div className="inline-flex flex-wrap items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-2 text-[11px] sm:text-sm text-white/70">
-              <span className="w-2 h-2 rounded-full bg-[#c8f04d] animate-pulse" />
-              Magang · PT. Data Andalan Utama · Mahasiswa
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] sm:text-sm text-white/70">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-[#c8f04d] animate-pulse" />
+
+              <span className="sm:hidden">Magang Frontend · Mahasiswa</span>
+
+              <span className="hidden sm:inline-flex items-center gap-2">
+                <span>Magang · PT. Data Andalan Utama</span>
+
+                <span className="h-2 w-2 shrink-0 rounded-full bg-[#c8f04d] animate-pulse" />
+
+                <span>Mahasiswa · Universitas Terbuka</span>
+              </span>
             </div>
           </motion.div>
 
@@ -101,7 +110,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p variants={fadeUp} className="text-white/55 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl">
-            Belajar otodidak sejak April 2024, saya membangun antarmuka web yang bersih, responsif, dan berkesan — dari nol, langkah demi langkah.
+            Membangun aplikasi web modern dengan fokus pada performa, pengalaman pengguna, dan kode yang mudah dikembangkan.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -120,21 +129,6 @@ export default function Hero() {
             >
               Hubungi Saya
             </a>
-          </motion.div>
-
-          {/* STATS */}
-          <motion.div variants={fadeUp} className="grid grid-cols-3 gap-4 sm:gap-8 pt-2 md:pt-4">
-            {[
-              { n: "1+", l: "Tahun belajar" },
-              { n: "4+", l: "Proyek selesai" },
-              { n: "20+", l: "Tools & tech" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="font-[Syne,sans-serif] text-2xl sm:text-3xl font-bold text-[#c8f04d]">{s.n}</div>
-
-                <div className="text-white/40 text-[11px] sm:text-sm">{s.l}</div>
-              </div>
-            ))}
           </motion.div>
         </motion.div>
 
@@ -198,11 +192,8 @@ export default function Hero() {
             {/* AVAILABILITY */}
             <div className="bg-[#c8f04d]/5 border border-[#c8f04d]/15 rounded-2xl p-4 md:p-5 flex items-center justify-between">
               <div>
-                <div className="font-semibold text-sm">Tersedia untuk kolaborasi</div>
-
-                <div className="text-white/40 text-xs">Freelance · Internship · Project</div>
+                <div className="font-semibold text-xs">Terbuka untuk Freelance dan Kolaborasi</div>
               </div>
-
               <span className="text-[#c8f04d] text-xl">✓</span>
             </div>
           </div>
