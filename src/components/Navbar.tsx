@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { href: "#about", label: "Tentang" },
   { href: "#skills", label: "Skills" },
-  { href: "#journey", label: "Perjalanan" },
   { href: "#projects", label: "Proyek" },
   { href: "#contact", label: "Kontak" },
 ];
@@ -16,50 +15,59 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
 
+  // Navbar background
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Active section
   useEffect(() => {
-    const sections = links.map((l) =>
-      l.href.replace("#", "")
-    );
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 120;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting)
-            setActive(e.target.id);
-        });
-      },
-      { threshold: 0.4 }
-    );
+      let currentSection = "";
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
+      for (const link of links) {
+        const id = link.href.replace("#", "");
+        const section = document.getElementById(id);
 
-      if (el) observer.observe(el);
-    });
+        if (!section) continue;
 
-    return () => observer.disconnect();
+        const sectionTop = section.offsetTop;
+
+        if (scrollPosition >= sectionTop) {
+          currentSection = id;
+        }
+      }
+
+      setActive(currentSection);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* lock scroll mobile menu */
+  // Lock scroll ketika mobile menu terbuka
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const handleNavigation = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -80,56 +88,49 @@ export default function Navbar() {
           {/* LOGO */}
           <motion.a
             href="#"
-            className="font-[Syne,sans-serif] text-lg sm:text-xl font-bold tracking-tight"
             whileHover={{ scale: 1.05 }}
+            className="font-[Syne,sans-serif] text-lg sm:text-xl font-bold tracking-tight"
           >
             Yudhi
-            <span className="text-[#c8f04d]">
-              .
-            </span>
+            <span className="text-[#c8f04d]">.</span>
           </motion.a>
 
-          {/* DESKTOP LINKS */}
+          {/* DESKTOP NAVIGATION */}
           <ul className="hidden md:flex items-center gap-6 lg:gap-8">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className={`relative text-sm font-medium transition-colors duration-300 group ${
-                    active ===
-                    l.href.replace("#", "")
-                      ? "text-[#c8f04d]"
-                      : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {l.label}
+            {links.map((link) => {
+              const id = link.href.replace("#", "");
+              const isActive = active === id;
 
-                  <span
-                    className={`absolute -bottom-1 left-0 h-px bg-[#c8f04d] transition-all duration-300 ${
-                      active ===
-                      l.href.replace("#", "")
-                        ? "w-full"
-                        : "w-0 group-hover:w-full"
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`relative text-sm font-medium transition-colors duration-300 group ${
+                      isActive
+                        ? "text-[#c8f04d]"
+                        : "text-white/60 hover:text-white"
                     }`}
-                  />
-                </a>
-              </li>
-            ))}
+                  >
+                    {link.label}
+
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px bg-[#c8f04d] transition-all duration-300 ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
-          {/* DESKTOP CTA */}
-          <a
-            href="mailto:yudhiyudhitok@gmail.com"
-            className="hidden md:flex items-center gap-2 bg-[#c8f04d] text-[#0a0a0a] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#d4f76a] transition-all duration-300 hover:scale-105 active:scale-95"
-          >
-            Hubungi →
-          </a>
-
-          {/* HAMBURGER */}
+          {/* MOBILE MENU BUTTON */}
           <button
-            onClick={() => setOpen(!open)}
+            type="button"
+            onClick={() => setOpen((value) => !value)}
             className="md:hidden relative z-50 flex flex-col gap-1.5 p-2"
-            aria-label="Toggle Menu"
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            aria-expanded={open}
           >
             <motion.span
               animate={
@@ -141,11 +142,7 @@ export default function Navbar() {
             />
 
             <motion.span
-              animate={
-                open
-                  ? { opacity: 0 }
-                  : { opacity: 1 }
-              }
+              animate={open ? { opacity: 0 } : { opacity: 1 }}
               className="w-6 h-0.5 bg-white block"
             />
 
@@ -173,44 +170,37 @@ export default function Navbar() {
           >
             <div className="flex flex-col items-center justify-center min-h-screen px-6 py-20">
               <div className="flex flex-col items-center gap-6 sm:gap-8">
-                {links.map((l, i) => (
-                  <motion.a
-                    key={l.href}
-                    href={l.href}
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      delay: i * 0.06,
-                    }}
-                    onClick={() => setOpen(false)}
-                    className={`font-[Syne,sans-serif] text-3xl sm:text-4xl font-bold transition-colors ${
-                      active ===
-                      l.href.replace("#", "")
-                        ? "text-[#c8f04d]"
-                        : "text-white hover:text-[#c8f04d]"
-                    }`}
-                  >
-                    {l.label}
-                  </motion.a>
-                ))}
-              </div>
+                {links.map((link, index) => {
+                  const id = link.href.replace("#", "");
+                  const isActive = active === id;
 
-              <motion.a
-                href="mailto:yudhiyudhitok@gmail.com"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35 }}
-                className="mt-10 bg-[#c8f04d] text-[#0a0a0a] px-7 py-3 rounded-full font-semibold text-sm hover:bg-[#d4f76a] transition-colors"
-                onClick={() => setOpen(false)}
-              >
-                Hubungi →
-              </motion.a>
+                  return (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      initial={{
+                        opacity: 0,
+                        y: 20,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        delay: index * 0.06,
+                      }}
+                      onClick={handleNavigation}
+                      className={`font-[Syne,sans-serif] text-3xl sm:text-4xl font-bold transition-colors ${
+                        isActive
+                          ? "text-[#c8f04d]"
+                          : "text-white hover:text-[#c8f04d]"
+                      }`}
+                    >
+                      {link.label}
+                    </motion.a>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         )}
