@@ -29,6 +29,7 @@ const socials = [
 const navigation = [
   ["Tentang Saya", "#about"],
   ["Skills", "#skills"],
+  ["Sertifikat", "#certificates"],
   ["Proyek", "#projects"],
   ["Kontak", "#contact"],
 ];
