@@ -3,7 +3,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles, LayoutTemplate } from "lucide-react";
 
 const certificates = [
   {
@@ -16,6 +16,17 @@ const certificates = [
     icon: Sparkles, 
     color: "#a855f7", // Warna ungu (sering diidentikkan dengan AI), atau bisa pakai "#60a5fa" (Biru MySkill)
     num: "01",
+  },
+  {
+    tag: "Short Class",
+    title: "Building Website with Lovable AI",
+    issuer: "MySkill",
+    date: "Okt 2026",
+    desc: "Mempelajari cara membangun dan mengembangkan website secara efisien menggunakan Lovable AI, serta mengintegrasikan kecerdasan buatan dalam proses web development.",
+    link: "https://drive.google.com/file/d/18eOOeVOOCI-At4dH93ct1Ub644sIF_eH/view", // Jangan lupa ganti dengan link sertifikat Lovable AI milikmu
+    icon: LayoutTemplate, // Ikon yang merepresentasikan layout website
+    color: "#3b82f6", // Biru klasik untuk tema web development
+    num: "02",
   },
 ];
 
